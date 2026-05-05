@@ -1,13 +1,11 @@
+"""LLM cmd plugin package.
+
+This package provides the ``llm cmd`` top-level command and supporting
+modules split by responsibility for incremental feature development.
+"""
+
 from llm import hookimpl
-import click
 
+from .plugin import register_commands
 
-@hookimpl
-def register_commands(cli):
-    @cli.command()
-    @click.argument("prompt", required=False)
-    def cmd(prompt):
-        """Generate a shell command from a prompt."""
-        if prompt is None:
-            raise click.UsageError("Usage: llm cmd 'your request'")
-        click.echo(prompt)
+__all__ = ["register_commands", "hookimpl"]
