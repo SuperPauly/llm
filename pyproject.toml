@@ -97,5 +97,9 @@ cmd = "llm_cmd"
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+
+[tool.mypy]
+files = ["llm", "llm_cmd"]
+
 [tool.setuptools.packages.find]
 include = ["llm*", "llm_cmd*"]

@@ -39,7 +39,7 @@ jobs:
     - name: Run mypy
       if: matrix.os != 'windows-latest'
       run: |
-        mypy llm
+        mypy llm llm_cmd
     - name: Run ruff
       if: matrix.os != 'windows-latest'
       run: |
