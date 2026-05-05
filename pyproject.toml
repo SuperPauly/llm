@@ -1,5 +1,5 @@
 [project]
-name = "llm"
+name = "llm-cmd"
 version = "0.32a1"
 description = "CLI utility and Python library for interacting with Large Language Models from organizations like OpenAI, Anthropic and Gemini plus local models installed on your own machine."
 readme = { file = "README.md", content-type = "text/markdown" }
@@ -33,12 +33,23 @@ dependencies = [
     "sqlite-migrate>=0.1a2",
     "pydantic>=2.0.0",
     "PyYAML",
+    "jsonschema",
     "pluggy",
     "python-ulid",
     "setuptools",
     "pip",
     "pyreadline3; sys_platform == 'win32'",
     "puremagic",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-httpx>=0.33.0",
+    "pytest-asyncio",
+    "pytest-recording",
+    "syrupy",
+    "llm-echo==0.3a3",
 ]
 
 [dependency-groups]
@@ -78,9 +89,13 @@ Changelog = "https://github.com/simonw/llm/releases"
 [project.scripts]
 llm = "llm.cli:cli"
 
+
+[project.entry-points.llm]
+cmd = "llm_cmd"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["llm*"]
+include = ["llm*", "llm_cmd*"]
